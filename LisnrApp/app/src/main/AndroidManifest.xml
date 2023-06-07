@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lisnrapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LisnrApp"
+        tools:replace="android:theme"
+        tools:targetApi="31">
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReceivedActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.lisnr.sdk.api_key"
+            android:value="eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwMGUwZTQ0YS1kMzdmLTQxZmEtYjhjNC0wMzViOTljMjA1ZGYifQ.TTIH4vG01uSCZYf_hlrSqZ4Q6h9l8H5bjdV8urB0EE85mPv_08eyei7GmBW0WXwoPHomYAKcaA9I3dh6lxShqr1Weje6ZZYYBeiBKrJ74un5sW5pEWE-iI5-H2X3gjhjkr4fMpwtjEhI4OdL5IPzDHJx1LNuVc06-M0iViBkGENO3068iYWO1QNiJ-_bDnM1ZYRInSfa-bTvK26Z_kR5fvdgVYCoenStz_hhhUrQ5Oyr47RC2KMB3NH8G4zLcGEnjlSUM7L-Fvhf22X_xrQ_1IP0qxGZ7IG5prAkNNqHdsloqnQr9aiV517fuSLfHSmG2WiMS5V-UtXBKGe7R4Rk-62ag6hhL6mQN_KslURo1uhTiBfKOOa1-EufL4SIbce_PJQuvhwEVnEcqjStBcFZYnxtbxQj2jOYo_JV8gPlXxR-rkP-yssEw2x1NZiVqhYIW1rSFIBkkqRkC8sJG1ZUDCGK2CPz5dEylcUtzfz_BdSs3Xn6T_-PihTxn_BCWkLgZ52aELmR3aYRWCKQBdhJ8vVkG6kItnmjn-vxNU2QDTPQU1nW0s4si5AMpiBMSt4vtDDPzAwOTdbK6BKCK28t8UXKcDIj__CA7JGsIq5-TOhoHxLOyr6wi2SnuFPHJ6qI6mxCElJBH5Le6xtIU9pAAgBD20W5k4pLSbY5cRw5x7Q" />
+        <meta-data
+            android:name="lisnr_sdk_token"
+            android:resource="@string/lisnr_sdk_token" />
+
+        <activity
+            android:name=".GalleryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="sampleapp.lisnr.com"
+                    android:scheme="http" />
+                <data
+                    android:host="sampleapp.lisnr.com"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

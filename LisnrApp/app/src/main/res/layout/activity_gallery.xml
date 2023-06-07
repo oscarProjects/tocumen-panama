@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GalleryActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/recibido_bg">
+
+
+        <Button
+            android:id="@+id/btn_return"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginVertical="12dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/arrow_back_btn"
+            android:backgroundTint="@color/white" />
+
+        <TextView
+            android:id="@+id/titleReceived"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recibido"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_marginVertical="12dp"
+            android:layout_centerHorizontal="true"/>
+
+        <ProgressBar
+            android:id="@+id/pgb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/containAll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_below="@+id/titleReceived"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:orientation="vertical">
+
+            <WebView
+                android:id="@+id/imgShowPromo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/titleReceived"
+                tools:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+        </LinearLayout>
+
+
+
+
+        <TextView
+            android:id="@+id/txtDetailPromoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Promoción a \n mostrar"
+            android:textAlignment="center"
+            android:textSize="17dp"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="10dp" />
+
+        <Button
+            android:id="@+id/buttonSaveImg"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/boton" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
