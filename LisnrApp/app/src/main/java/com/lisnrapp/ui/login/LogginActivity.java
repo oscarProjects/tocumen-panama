@@ -1,4 +1,4 @@
-package com.lisnrapp;
+package com.lisnrapp.ui.login;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,105 +10,83 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.lisnrapp.DatabaseHandler;
+import com.lisnrapp.MainActivity;
+import com.lisnrapp.databinding.ActivityLogginBinding;
+import com.lisnrapp.ui.register.RegisterActivity;
 
-import java.io.IOException;
+import java.util.Objects;
 
-public class LogginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LogginActivity extends AppCompatActivity {
 
 
     private static String TAG = LogginActivity.class.getSimpleName();
 
-    private Button btnLoggin,btnRegistered;
-    private EditText et_email, et_password;
-    //    private TextView btnSkip;
-    private ProgressBar pgb;
     private DatabaseHandler db;
     private SQLiteDatabase sqLiteDatabase;
     private InputMethodManager imm;
-    private TextView recoverPassword;
+    private ActivityLogginBinding binding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        setContentView(R.layout.activity_loggin);
+        binding = ActivityLogginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-
-        pgb = findViewById(R.id.pgbLogin);
-        et_email = findViewById(R.id.et_login_email);
-        et_password = findViewById(R.id.et_password);
-        btnLoggin = findViewById(R.id.btnLoggin);
-        btnRegistered = findViewById(R.id.btnRegistered);
-        recoverPassword = findViewById(R.id.recoverPassword);
-
-        recoverPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogginActivity.this, RecoverPasswordActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        binding.btnLogin.setOnClickListener(v -> {
+            //loginValidations(v);
+            Intent intent = new Intent(LogginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
-        btnLoggin.setOnClickListener(this);
-        btnRegistered.setOnClickListener(this);
+
+        binding.btnAccountRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LogginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
-
-
     }
 
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.btnLoggin:
-                btnLoggin.setClickable(false);
-                btnRegistered.setClickable(false);
-                pgb.setVisibility(View.VISIBLE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                validateFields();
-                break;
-            case R.id.btnRegistered:
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(i);
-                finish();
-                break;
-        }
+    private void loginValidations(View v){
+        showProgress(true);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        validateFields();
+    }
+
+    private void showProgress(Boolean show){
+        binding.pgbLogin.setVisibility((show ? View.VISIBLE : View.GONE));
     }
 
     private void validateFields() {
         boolean cancel = false;
         View focusView = null;
 
-        if (TextUtils.isEmpty(et_email.getText().toString())) {
-            focusView = et_email;
+        if (TextUtils.isEmpty(binding.etUserName.getText().toString())) {
+            focusView = binding.etUserName;
             cancel = true;
             Toast.makeText(getApplicationContext(),"Por favor ingrese un correo electrónico",Toast.LENGTH_LONG).show();
         }
-        else if (!isEmailValid(et_email.getText().toString())) {
-            focusView = et_email;
+        else if (!isEmailValid(binding.etUserName.getText().toString())) {
+            focusView = binding.etUserName;
             cancel = true;
-            et_email.setText("");
+            binding.etUserName.setText("");
             Toast.makeText(getApplicationContext(),"Correo electrónico inválido, por favor ingrese un correo válido",Toast.LENGTH_LONG).show();
 
-        } else if (TextUtils.isEmpty(et_password.getText().toString())) {
-            focusView = et_password;
+        } else if (TextUtils.isEmpty(binding.etPassword.getText().toString())) {
+            focusView = binding.etPassword;
             cancel = true;
             Toast.makeText(getApplicationContext(),"Por favor ingrese una contraseña",Toast.LENGTH_LONG).show();
 
@@ -117,33 +95,30 @@ public class LogginActivity extends AppCompatActivity implements View.OnClickLis
             if (focusView != null)
                 focusView.requestFocus();
 
-            pgb.setVisibility(View.GONE);
-            btnLoggin.setClickable(true);
-            btnRegistered.setClickable(true);
+            showProgress(false);
 
         } else {
             //continue el camino
-            loginRequest(et_email.getText().toString(), et_password.getText().toString());
+            //loginRequest(binding.etUserName.getText().toString(), binding.etPassword.getText().toString());
         }
     }
 
     private void attemptLogin() {
-        pgb.setVisibility(View.GONE);
-        Intent forgotActivity = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+        showProgress(false);
+        Intent forgotActivity = new Intent(LogginActivity.this, MainActivity.class);
         startActivity(forgotActivity);
         finish();
-        Toast toast = Toast.makeText(this, "Bienvenido ", Toast.LENGTH_LONG);
-        toast.show();
+        Toast.makeText(this, "Bienvenido ", Toast.LENGTH_LONG).show();
 
     }
 
     private void saveData(int id) {
 
-        db = new DatabaseHandler(LoginActivity.this);
+        db = new DatabaseHandler(LogginActivity.this);
         sqLiteDatabase = db.getWritableDatabase();
 
 
-        db.insertUsers(sqLiteDatabase,id);
+        db.insertUsers(sqLiteDatabase,"titulo", "hora", "url");
         db.close();
 
 
@@ -182,7 +157,7 @@ public class LogginActivity extends AppCompatActivity implements View.OnClickLis
         return email.contains("@");
     }
 
-    private void loginRequest(String email, String password) {
+    /*private void loginRequest(String email, String password) {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("correo", email);
@@ -204,9 +179,7 @@ public class LogginActivity extends AppCompatActivity implements View.OnClickLis
                     saveData(id);
                     attemptLogin();
                 } else {
-                    pgb.setVisibility(View.GONE);
-                    btnLoggin.setClickable(true);
-                    btnRegistered.setClickable(true);
+                    showProgress(false);
                     et_password.setText("");
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -222,13 +195,11 @@ public class LogginActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 showAlertDialog("Error de conexión, por favor intente nuevamente");
-                pgb.setVisibility(View.GONE);
-                btnLoggin.setClickable(true);
-                btnRegistered.setClickable(true);
-                et_password.setText("");
+                showProgress(false);
+                binding.etUserName.setText("");
             }
         });
-    }
+    }*/
 
 
 

@@ -1,4 +1,4 @@
-package com.lisnrapp;
+package com.lisnrapp.ui.splash;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -12,6 +12,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.lisnrapp.MainActivity;
+import com.lisnrapp.R;
+import com.lisnrapp.ui.register.RegisterActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -120,7 +124,7 @@ public class SplashActivity extends AppCompatActivity {
 
     public void openPermissionScreen() {
 
-        Intent startmain = new Intent(SplashActivity.this, PermissionActivity.class);
+        Intent startmain = new Intent(SplashActivity.this, RegisterActivity.class);
         startActivity(startmain);
         finish();
 

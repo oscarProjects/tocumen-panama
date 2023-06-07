@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
-    tools:context=".LogginActivity">
+    tools:context=".ui.login.LogginActivity">
 
     <ImageView
         android:id="@+id/img_loggin_logo"
@@ -147,7 +147,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btncreateAcount"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -172,7 +172,7 @@
                 android:fontFamily="@font/circebold"/>
 
             <Button
-                android:id="@+id/btn_noAcount_question"
+                android:id="@+id/btn_account_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_register"
