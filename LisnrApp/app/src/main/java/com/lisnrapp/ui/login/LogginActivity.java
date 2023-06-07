@@ -15,9 +15,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lisnrapp.DatabaseHandler;
+import com.lisnrapp.database.DatabaseHandler;
 import com.lisnrapp.MainActivity;
 import com.lisnrapp.databinding.ActivityLogginBinding;
+import com.lisnrapp.ui.permissions.PermissionsActivity;
 import com.lisnrapp.ui.register.RegisterActivity;
 
 import java.util.Objects;
@@ -46,7 +47,7 @@ public class LogginActivity extends AppCompatActivity {
 
         binding.btnLogin.setOnClickListener(v -> {
             //loginValidations(v);
-            Intent intent = new Intent(LogginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LogginActivity.this, PermissionsActivity.class);
             startActivity(intent);
             finish();
         });

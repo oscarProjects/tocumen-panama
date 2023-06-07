@@ -6,7 +6,9 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lisnrapp.databinding.ActivityRegisterBinding;
 import com.lisnrapp.ui.login.LogginActivity;
+import com.lisnrapp.ui.permissions.PermissionsActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -26,6 +28,12 @@ public class RegisterActivity extends AppCompatActivity {
     private void initListener(){
         binding.btnNoAcountQuestion.setOnClickListener(v -> {
             Intent startmain = new Intent(RegisterActivity.this, LogginActivity.class);
+            startActivity(startmain);
+            finish();
+        });
+
+        binding.btnLoggin.setOnClickListener(v -> {
+            Intent startmain = new Intent(RegisterActivity.this, PermissionsActivity.class);
             startActivity(startmain);
             finish();
         });

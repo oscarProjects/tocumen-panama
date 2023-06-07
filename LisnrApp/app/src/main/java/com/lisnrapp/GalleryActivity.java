@@ -14,6 +14,8 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lisnrapp.database.DatabaseHandler;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;

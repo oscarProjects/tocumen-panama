@@ -141,6 +141,13 @@
     <string name="tv_password_actual">Contraseña actual (Requerido)</string>
     <string name="tv_password_new">Contraseña nueva (Requerido)</string>
     <string name="tv_password_confirm">Confirmar contraseña (Requerido)</string>
+
+    <string name="tv_allow_notifications">Permitir Notificaciones</string>
+    <string name="tv_allow_notifications_description">Permite que la aplicación envíe notificaciones para que pueda realizar todos los servicios de forma correcta.</string>
+
+    <string name="tv_allow_microphone">Acceso al Micrófono</string>
+    <string name="tv_allow_microphone_description">Permite que la aplicación tenga acceso al micrófono para que pueda realizar todos los servicios de forma correcta.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

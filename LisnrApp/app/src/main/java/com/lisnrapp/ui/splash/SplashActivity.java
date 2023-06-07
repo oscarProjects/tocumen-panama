@@ -78,7 +78,8 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         if (allPermissionsGranted) {
-            go_next_Main();
+            //go_next_Main();
+            openPermissionScreen();
         } else {
             ActivityCompat.requestPermissions(this, permissions, MY_PERMISSIONS_REQUEST_WRITE_FILES);
         }
@@ -92,7 +93,8 @@ public class SplashActivity extends AppCompatActivity {
         if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_FILES) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                go_next_Main();
+                //go_next_Main();
+                openPermissionScreen();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
                 builder.setMessage("App required some permission please enable it")

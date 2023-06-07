@@ -1,4 +1,4 @@
-package com.lisnrapp;
+package com.lisnrapp.database;
 
 import android.content.ContentValues;
 import android.content.Context;
