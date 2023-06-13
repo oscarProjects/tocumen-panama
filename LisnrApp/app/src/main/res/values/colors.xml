@@ -4,6 +4,8 @@
 
     <color name="colorMenuPrinc">#000C1E</color>
     <color name="colorMenuLateral">#13325E</color>
+    <color name="colorBars">#000B16</color>
+    <color name="colorBackHome">#010E20</color>
 
 
     <color name="colorTextWhite">#FFFFFF</color>

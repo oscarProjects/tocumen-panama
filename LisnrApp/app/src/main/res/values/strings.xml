@@ -117,8 +117,21 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_cupones">Cupones</string>
+    <string name="menu_mapa">Mapa</string>
+    <string name="menu_start">Volver al Inicio</string>
+    <string name="menu_user">Usuario/Registro</string>
+    <string name="menu_configuration">Configuración</string>
+    <string name="menu_history">Historial</string>
+    <string name="menu_videos">Videos</string>
+    <string name="menu_pays">Pagos</string>
+    <string name="menu_tickets">Tiquetes</string>
+    <string name="menu_info">Información</string>
+    <string name="menu_go_out">Salir</string>
+    <string name="home_shops">Tiendas</string>
+    <string name="home_restaurants">Restaurantes</string>
+    <string name="home_cars">Rent a Car</string>
+    <string name="home_info">Información</string>
 
 
     <string name="tv_title_loggin">Ingresar</string>
@@ -150,4 +163,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_navigation_home">NavigationHomeActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
