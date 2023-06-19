@@ -27,14 +27,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initListener(){
         binding.btnNoAcountQuestion.setOnClickListener(v -> {
-            Intent startmain = new Intent(RegisterActivity.this, LogginActivity.class);
-            startActivity(startmain);
+            Intent intentLogin = new Intent(RegisterActivity.this, LogginActivity.class);
+            startActivity(intentLogin);
             finish();
         });
 
         binding.btnLoggin.setOnClickListener(v -> {
-            Intent startmain = new Intent(RegisterActivity.this, PermissionsActivity.class);
-            startActivity(startmain);
+            Intent intentPermissions = new Intent(RegisterActivity.this, PermissionsActivity.class);
+            startActivity(intentPermissions);
             finish();
         });
     }

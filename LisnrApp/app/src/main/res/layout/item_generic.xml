@@ -17,39 +17,51 @@
             card_view:cardElevation="0dp"
             android:id="@+id/card"
             app:cardBackgroundColor="@color/colorCardsConteiners"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
             android:focusable="true">
 
-            <RelativeLayout
-                android:layout_marginEnd="8dp"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
 
                 <ImageView
-                    android:id="@+id/imageCupon"
-                    android:layout_width="102dp"
-                    android:layout_height="102dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="start"
-                    android:scaleType="fitCenter"
+                    android:id="@+id/imageView"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
                     android:src="@drawable/pizza"
+                    android:visibility="gone"
                     android:contentDescription="@null" />
 
                 <TextView
-                    android:layout_toEndOf="@id/imageCupon"
-                    android:layout_marginStart="8dp"
-                    android:id="@+id/descCupon"
+                    android:id="@+id/description"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="2x1 Pizzas Grandes"
+                    android:textSize="16sp"
+                    android:textColor="@color/bb_white" />
+
+                <ImageView
+                    android:id="@+id/imageViewLogo"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:src="@drawable/pizza"
+                    android:visibility="gone"
+                    android:contentDescription="@null" />
+
+                <ImageView
+                    android:id="@+id/imageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:text="2x1\nPizzas\nGrandes"
-                    android:textColor="@color/bb_white"
-                    android:textSize="24sp" />
+                    android:src="@drawable/flechaderecha"
+                    android:visibility="gone"
+                    android:layout_gravity="bottom"
+                    android:contentDescription="@null" />
 
-            </RelativeLayout>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>

@@ -1,7 +1,6 @@
 package com.lisnrapp.ui.permissions.microphone;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,26 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.lisnrapp.databinding.FragmentMicrophoneBinding;
 import com.lisnrapp.ui.home.HomeActivity;
-import com.lisnrapp.ui.splash.SplashActivity;
-
-import java.util.Arrays;
 
 public class MicrophoneFragment extends Fragment {
 
     public static final int MY_PERMISSIONS_REQUEST_WRITE_FILES = 102;
 
     private FragmentMicrophoneBinding binding;
-
-    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -82,7 +74,7 @@ public class MicrophoneFragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_FILES) {
             if (grantResults.length > 0
@@ -91,22 +83,13 @@ public class MicrophoneFragment extends Fragment {
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
                 builder.setMessage("App required some permission please enable it")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // FIRE ZE MISSILES!
-                                openPermissionScreen();
-                            }
-                        })
-                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // User cancelled the dialog
-                                dialog.dismiss();
-                                requireActivity().finish();
-                            }
+                        .setPositiveButton("Yes", (dialog, id) -> openPermissionScreen())
+                        .setNegativeButton("Cancelar", (dialog, id) -> {
+                            dialog.dismiss();
+                            requireActivity().finish();
                         });
-                AlertDialog dialog = builder.show();
+                builder.show();
             }
-            return;
         }
     }
 

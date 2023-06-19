@@ -32,19 +32,14 @@ public class PermissionsActivity extends FragmentActivity {
         binding.viewpager.setAdapter(adapter);
 
         new TabLayoutMediator(binding.tablayout, binding.viewpager,
-                (tab, position) -> {
-                    binding.viewpager.setCurrentItem(tab.getPosition(), true);
-                }).attach();
+                (tab, position) -> binding.viewpager.setCurrentItem(tab.getPosition(), true)).attach();
     }
 
     @Override
     public void onBackPressed() {
         if (binding.viewpager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
-            // Otherwise, select the previous step.
             binding.viewpager.setCurrentItem(binding.viewpager.getCurrentItem() - 1);
         }
     }
