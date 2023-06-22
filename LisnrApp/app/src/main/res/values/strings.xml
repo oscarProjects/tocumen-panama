@@ -165,4 +165,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_navigation_home">NavigationHomeActivity</string>
     <string name="title_activity_home">HomeActivity</string>
+
+    <string name="button_create_account">Crear cuenta</string>
 </resources>

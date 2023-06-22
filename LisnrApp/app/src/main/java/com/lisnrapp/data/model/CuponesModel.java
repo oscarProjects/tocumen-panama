@@ -1,4 +1,4 @@
-package com.lisnrapp.model;
+package com.lisnrapp.data.model;
 
 public class CuponesModel {
     private int idCupon;

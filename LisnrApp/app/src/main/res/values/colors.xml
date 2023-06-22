@@ -7,6 +7,10 @@
     <color name="colorBars">#000B16</color>
     <color name="colorBackHome">#010E20</color>
 
+    <color name="colorButtons">#000075</color>
+    <color name="colorGradientOne">#010E20</color>
+    <color name="colorGradientTwo">#000074</color>
+
 
     <color name="colorTextWhite">#FFFFFF</color>
     <color name="colorTextGray">#C2C2C2</color>
