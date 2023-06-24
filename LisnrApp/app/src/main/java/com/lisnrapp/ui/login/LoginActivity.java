@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -15,48 +14,40 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lisnrapp.database.DatabaseHandler;
 import com.lisnrapp.MainActivity;
-import com.lisnrapp.databinding.ActivityLogginBinding;
+import com.lisnrapp.MyApplication;
+import com.lisnrapp.database.DatabaseHandler;
+import com.lisnrapp.databinding.ActivityLoginBinding;
 import com.lisnrapp.ui.permissions.PermissionsActivity;
 import com.lisnrapp.ui.register.RegisterActivity;
 
-import java.util.Objects;
+import javax.inject.Inject;
 
-public class LogginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
 
-    private static String TAG = LogginActivity.class.getSimpleName();
+    private static String TAG = LoginActivity.class.getSimpleName();
 
     private DatabaseHandler db;
     private SQLiteDatabase sqLiteDatabase;
     private InputMethodManager imm;
-    private ActivityLogginBinding binding;
+    private ActivityLoginBinding binding;
+    @Inject
+    LoginViewModel loginViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((MyApplication) getApplicationContext()).getAppComponent().inject(this);
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        binding = ActivityLogginBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.btnLogin.setOnClickListener(v -> {
-            //loginValidations(v);
-            Intent intent = new Intent(LogginActivity.this, PermissionsActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        binding.btnLogin.setOnClickListener(this::loginValidations);
 
-        binding.btnAccountRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(LogginActivity.this, RegisterActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        binding.btnAccountRegister.setOnClickListener(v -> navigateToRegister());
 
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
@@ -69,53 +60,75 @@ public class LogginActivity extends AppCompatActivity {
 
     private void showProgress(Boolean show){
         binding.pgbLogin.setVisibility((show ? View.VISIBLE : View.GONE));
+        if(show) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }else{
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
     }
 
     private void validateFields() {
         boolean cancel = false;
         View focusView = null;
 
-        if (TextUtils.isEmpty(binding.etUserName.getText().toString())) {
+        if (TextUtils.isEmpty(binding.etUserName.getText().toString().trim())) {
             focusView = binding.etUserName;
             cancel = true;
             Toast.makeText(getApplicationContext(),"Por favor ingrese un correo electrónico",Toast.LENGTH_LONG).show();
-        }
-        else if (!isEmailValid(binding.etUserName.getText().toString())) {
+        } else if (!isEmailValid(binding.etUserName.getText().toString().trim())) {
             focusView = binding.etUserName;
             cancel = true;
             binding.etUserName.setText("");
             Toast.makeText(getApplicationContext(),"Correo electrónico inválido, por favor ingrese un correo válido",Toast.LENGTH_LONG).show();
-
-        } else if (TextUtils.isEmpty(binding.etPassword.getText().toString())) {
+        } else if (TextUtils.isEmpty(binding.etPassword.getText().toString().trim())) {
             focusView = binding.etPassword;
             cancel = true;
             Toast.makeText(getApplicationContext(),"Por favor ingrese una contraseña",Toast.LENGTH_LONG).show();
-
         }
         if (cancel) {
             if (focusView != null)
                 focusView.requestFocus();
-
             showProgress(false);
-
         } else {
-            //continue el camino
-            //loginRequest(binding.etUserName.getText().toString(), binding.etPassword.getText().toString());
+            requestLogin();
         }
     }
 
-    private void attemptLogin() {
-        showProgress(false);
-        Intent forgotActivity = new Intent(LogginActivity.this, MainActivity.class);
+    private boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
+    private void requestLogin(){
+        initObservers();
+        loginViewModel.requestLogin(binding.etUserName.getText().toString().trim(), binding.etPassword.getText().toString().trim(), this);
+    }
+
+    private void initObservers(){
+        loginViewModel.responseLogin().observe(this, loginModel -> {
+            if(loginModel != null){
+                showProgress(false);
+                loginSuccess();
+            }
+        });
+    }
+
+    private void loginSuccess() {
+        Intent forgotActivity = new Intent(LoginActivity.this, PermissionsActivity.class);
         startActivity(forgotActivity);
         finish();
         Toast.makeText(this, "Bienvenido ", Toast.LENGTH_LONG).show();
+    }
 
+    private void navigateToRegister(){
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void saveData(int id) {
 
-        db = new DatabaseHandler(LogginActivity.this);
+        db = new DatabaseHandler(LoginActivity.this);
         sqLiteDatabase = db.getWritableDatabase();
 
 
@@ -151,11 +164,6 @@ public class LogginActivity extends AppCompatActivity {
 //
 //        return db.insert(CART_TABLE, null, values);
 
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
     }
 
     /*private void loginRequest(String email, String password) {
@@ -217,6 +225,10 @@ public class LogginActivity extends AppCompatActivity {
         alert.show();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
 
 }

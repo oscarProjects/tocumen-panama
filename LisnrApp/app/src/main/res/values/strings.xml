@@ -167,4 +167,11 @@
     <string name="title_activity_home">HomeActivity</string>
 
     <string name="button_create_account">Crear cuenta</string>
+    <string name="button_enter_account">Ingresar</string>
+
+    <string name="hint_name_user">Nombre de usuario</string>
+    <string name="hint_password">Ingrese su contraseña</string>
+    <string name="hint_mail">Ingrese su correo</string>
+    <string name="hint_password_confirm">Confirme su contraseña</string>
+    <string name="hint_already_have_account">¿Ya tiene una cuenta?</string>
 </resources>

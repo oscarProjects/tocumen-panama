@@ -17,7 +17,8 @@ public interface ApiRetrofit {
 
     @POST
     Call<ResponseBody> post(@Url String url,
-                            @Body HashMap<String, Object> bodyRequest);
+                                          @HeaderMap HashMap<String, String> headerMap,
+                                          @Body HashMap<String, Object> bodyRequest);
 
     @GET
     Call<ResponseBody> get(@Url String url);

@@ -79,7 +79,7 @@
                 android:layout_marginStart="12dp"
                 android:inputType="textEmailAddress"
                 android:textAlignment="textStart"
-                android:hint="Nombre de usuario"
+                android:hint="@string/hint_name_user"
                 android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
@@ -110,7 +110,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="19dp"
-                android:src="@drawable/correo"/>
+                android:src="@drawable/correo"
+                android:contentDescription="@null" />
 
             <EditText
                 android:id="@+id/et_email"
@@ -121,7 +122,7 @@
                 android:layout_marginStart="12dp"
                 android:inputType="textEmailAddress"
                 android:textAlignment="textStart"
-                android:hint="Ingrese su correo"
+                android:hint="@string/hint_mail"
                 android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
@@ -152,7 +153,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="19dp"
-                android:src="@drawable/contrasena"/>
+                android:src="@drawable/contrasena"
+                android:contentDescription="@null" />
 
             <EditText
                 android:id="@+id/et_password"
@@ -163,7 +165,7 @@
                 android:layout_marginStart="12dp"
                 android:inputType="textPassword"
                 android:textAlignment="textStart"
-                android:hint="Ingrese su contraseña"
+                android:hint="@string/hint_password"
                 android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
@@ -203,7 +205,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="19dp"
-                android:src="@drawable/contrasena"/>
+                android:src="@drawable/contrasena"
+                android:contentDescription="@null"/>
 
             <EditText
                 android:id="@+id/et_confirm_password"
@@ -214,7 +217,7 @@
                 android:layout_marginStart="12dp"
                 android:inputType="textPassword"
                 android:textAlignment="textStart"
-                android:hint="Confirme su contraseña"
+                android:hint="@string/hint_password_confirm"
                 android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
@@ -299,8 +302,8 @@
                 android:id="@+id/tv_noAcount_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿Ya tiene una cuenta?"
-                android:layout_marginLeft="55dp"
+                android:text="@string/hint_already_have_account"
+                android:layout_marginStart="55dp"
                 android:textAlignment="textStart"
                 android:textColor="@color/colorTextGray"
                 android:textSize="15sp"
@@ -310,8 +313,8 @@
                 android:id="@+id/btn_noAcount_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingresar"
-                android:layout_marginLeft="10dp"
+                android:text="@string/button_enter_account"
+                android:layout_marginStart="10dp"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:background="#00C2C2C2"
