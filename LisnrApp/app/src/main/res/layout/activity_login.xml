@@ -25,7 +25,6 @@
         android:id="@+id/tv_title_loggin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img_loggin_logo"
         android:fontFamily="@font/circeextrabold"
         android:text="@string/tv_title_loggin"
         android:textAlignment="center"

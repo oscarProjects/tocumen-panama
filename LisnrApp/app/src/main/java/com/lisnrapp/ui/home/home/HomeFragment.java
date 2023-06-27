@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.lisnrapp.R;
 import com.lisnrapp.adapters.GenericAdapter;
 import com.lisnrapp.databinding.FragmentHomeBinding;
-import com.lisnrapp.data.model.CuponesModel;
+import com.lisnrapp.data.cupones.CuponesModel;
 
 import java.util.ArrayList;
 import java.util.List;

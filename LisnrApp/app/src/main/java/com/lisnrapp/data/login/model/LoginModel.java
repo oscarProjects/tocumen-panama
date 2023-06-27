@@ -1,4 +1,4 @@
-package com.lisnrapp.data.model;
+package com.lisnrapp.data.login.model;
 
 import com.google.gson.annotations.SerializedName;
 

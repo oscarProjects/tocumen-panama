@@ -30,8 +30,6 @@ public class ApiManager {
         this.callbackCall = callbackCall;
     }
 
-
-
     public void executePost(String service, HashMap<String, String> headerMap, HashMap<String, Object> bodyRequest){
         Call<ResponseBody> call = apiRetrofit.post(service, headerMap, bodyRequest);
         call.enqueue(new Callback<ResponseBody>() {

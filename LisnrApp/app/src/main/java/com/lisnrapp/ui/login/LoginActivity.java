@@ -5,17 +5,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lisnrapp.MainActivity;
 import com.lisnrapp.MyApplication;
+import com.lisnrapp.data.login.model.LoginModel;
 import com.lisnrapp.database.DatabaseHandler;
 import com.lisnrapp.databinding.ActivityLoginBinding;
 import com.lisnrapp.ui.permissions.PermissionsActivity;
@@ -53,71 +51,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginValidations(View v){
-        showProgress(true);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-        validateFields();
-    }
-
-    private void showProgress(Boolean show){
-        binding.pgbLogin.setVisibility((show ? View.VISIBLE : View.GONE));
-        if(show) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        }else{
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        }
-    }
-
-    private void validateFields() {
-        boolean cancel = false;
-        View focusView = null;
-
-        if (TextUtils.isEmpty(binding.etUserName.getText().toString().trim())) {
-            focusView = binding.etUserName;
-            cancel = true;
-            Toast.makeText(getApplicationContext(),"Por favor ingrese un correo electrónico",Toast.LENGTH_LONG).show();
-        } else if (!isEmailValid(binding.etUserName.getText().toString().trim())) {
-            focusView = binding.etUserName;
-            cancel = true;
-            binding.etUserName.setText("");
-            Toast.makeText(getApplicationContext(),"Correo electrónico inválido, por favor ingrese un correo válido",Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(binding.etPassword.getText().toString().trim())) {
-            focusView = binding.etPassword;
-            cancel = true;
-            Toast.makeText(getApplicationContext(),"Por favor ingrese una contraseña",Toast.LENGTH_LONG).show();
-        }
-        if (cancel) {
-            if (focusView != null)
-                focusView.requestFocus();
-            showProgress(false);
-        } else {
-            requestLogin();
-        }
-    }
-
-    private boolean isEmailValid(String email) {
-        return email.contains("@");
-    }
-
-    private void requestLogin(){
+        loginViewModel.validateFields(binding, getBaseContext(), this);
         initObservers();
-        loginViewModel.requestLogin(binding.etUserName.getText().toString().trim(), binding.etPassword.getText().toString().trim(), this);
     }
 
-    private void initObservers(){
+    private void initObservers() {
         loginViewModel.responseLogin().observe(this, loginModel -> {
-            if(loginModel != null){
-                showProgress(false);
-                loginSuccess();
+            if (loginModel != null) {
+                loginViewModel.showProgress(binding, false, this);
+                loginSuccess(loginModel);
             }
         });
     }
 
-    private void loginSuccess() {
+    private void loginSuccess(LoginModel loginModel) {
         Intent forgotActivity = new Intent(LoginActivity.this, PermissionsActivity.class);
         startActivity(forgotActivity);
         finish();
-        Toast.makeText(this, "Bienvenido ", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Bienvenido " + loginModel.getName(), Toast.LENGTH_LONG).show();
     }
 
     private void navigateToRegister(){
@@ -223,12 +175,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        binding = null;
     }
 
 }

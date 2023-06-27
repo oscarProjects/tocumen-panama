@@ -1,4 +1,4 @@
-package com.lisnrapp.data.repository;
+package com.lisnrapp.data.login.repository;
 
 import android.content.Context;
 
@@ -7,9 +7,10 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.lisnrapp.R;
-import com.lisnrapp.data.model.LoginModel;
+import com.lisnrapp.data.login.model.LoginModel;
 import com.lisnrapp.retrofit.ApiManager;
 import com.lisnrapp.retrofit.CallbackCall;
+import com.lisnrapp.utils.UtilsLisnr;
 
 import java.util.HashMap;
 
@@ -33,7 +34,7 @@ public class LoginRepository implements CallbackCall {
         HashMap<String, Object> bodyRequest = new HashMap<>();
         bodyRequest.put("email", user);
         bodyRequest.put("password", password);
-        bodyRequest.put("device_name", "device_name");
+        bodyRequest.put("device_name", UtilsLisnr.getDeviceName());
 
         HashMap<String, String> headerMap = new HashMap<>();
         headerMap.put("Accept", "application/json");
