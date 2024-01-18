@@ -1,59 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fondo2"
+    android:background="@drawable/background_gradient"
     tools:context=".ui.register.RegisterActivity">
 
     <ImageView
         android:id="@+id/img_loggin_logo"
         android:layout_width="match_parent"
         android:layout_height="94dp"
-        android:layout_marginVertical="80dp"
         android:layout_gravity="center"
+        android:layout_marginVertical="80dp"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
     <TextView
         android:id="@+id/tv_title_loggin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:fontFamily="@font/circeextrabold"
         android:text="@string/tv_create_account"
-        android:textAllCaps="true"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/colorTextWhite"
-        android:layout_below="@+id/img_loggin_logo"
         android:textSize="21sp"
-        android:fontFamily="@font/circeextrabold" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_loggin_logo"
+        app:layout_constraintVertical_bias="0.1" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="6dp"
-        android:orientation="vertical"
         android:layout_below="@+id/tv_title_loggin"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
         android:paddingLeft="25dp"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingRight="25dp"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_loggin">
 
         <TextView
             android:id="@+id/tv_userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/circebold"
             android:text="@string/tv_login_user"
             android:textAlignment="textStart"
             android:textColor="@color/colorTextGray"
-            android:textSize="15sp"
-            android:fontFamily="@font/circebold"/>
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,20 +76,21 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="19dp"
-                android:src="@drawable/usuario"/>
+                android:layout_marginStart="19dp"
+                android:contentDescription="@null"
+                android:src="@drawable/usuario" />
 
             <EditText
                 android:id="@+id/et_user_name"
                 android:layout_width="0dp"
                 android:layout_height="37dp"
                 android:layout_marginVertical="3sp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
+                android:background="@null"
+                android:hint="@string/hint_name_user"
                 android:inputType="textEmailAddress"
                 android:textAlignment="textStart"
-                android:hint="Nombre de usuario"
-                android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
                 android:textSize="14sp" />
@@ -91,11 +102,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/circebold"
             android:text="@string/tv_login_email"
             android:textAlignment="textStart"
             android:textColor="@color/colorTextGray"
-            android:textSize="15sp"
-            android:fontFamily="@font/circebold"/>
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,38 +119,37 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="19dp"
-                android:src="@drawable/correo"/>
+                android:layout_marginStart="19dp"
+                android:contentDescription="@null"
+                android:src="@drawable/correo" />
 
             <EditText
                 android:id="@+id/et_email"
                 android:layout_width="0dp"
                 android:layout_height="37dp"
                 android:layout_marginVertical="3sp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
+                android:background="@null"
+                android:hint="@string/hint_mail"
                 android:inputType="textEmailAddress"
                 android:textAlignment="textStart"
-                android:hint="Ingrese su correo"
-                android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
                 android:textSize="14sp" />
 
         </LinearLayout>
 
-
-
         <TextView
             android:id="@+id/tv_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/circebold"
             android:text="@string/tv_login_password"
             android:textAlignment="textStart"
             android:textColor="@color/colorTextGray"
-            android:textSize="15sp"
-            android:fontFamily="@font/circebold"/>
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,32 +162,34 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="19dp"
-                android:src="@drawable/contrasena"/>
+                android:layout_marginStart="19dp"
+                android:contentDescription="@null"
+                android:src="@drawable/contrasena" />
 
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="0dp"
                 android:layout_height="37dp"
                 android:layout_marginVertical="3sp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
+                android:background="@null"
+                android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:textAlignment="textStart"
-                android:hint="Ingrese su contraseña"
-                android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
                 android:textSize="14sp" />
+
             <ToggleButton
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center_vertical"
-                android:textOn=""
-                android:textOff=""
-                android:layout_marginRight="19dp"
+                android:layout_marginEnd="19dp"
+                android:background="@drawable/mostrar"
                 android:checked="false"
-                android:background="@drawable/mostrar"/>
+                android:textOff=""
+                android:textOn="" />
 
         </LinearLayout>
 
@@ -186,11 +198,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/circebold"
             android:text="@string/tv_login_confirm_password"
             android:textAlignment="textStart"
             android:textColor="@color/colorTextGray"
-            android:textSize="15sp"
-            android:fontFamily="@font/circebold"/>
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -203,41 +215,43 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="19dp"
-                android:src="@drawable/contrasena"/>
+                android:layout_marginStart="19dp"
+                android:contentDescription="@null"
+                android:src="@drawable/contrasena" />
 
             <EditText
                 android:id="@+id/et_confirm_password"
                 android:layout_width="0dp"
                 android:layout_height="37dp"
                 android:layout_marginVertical="3sp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="12dp"
+                android:background="@null"
+                android:hint="@string/hint_password_confirm"
                 android:inputType="textPassword"
                 android:textAlignment="textStart"
-                android:hint="Confirme su contraseña"
-                android:background="@null"
                 android:textColor="@color/colorTextGray"
                 android:textColorHint="@color/colorTextGray"
                 android:textSize="14sp" />
+
             <ToggleButton
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center_vertical"
-                android:textOn=""
-                android:textOff=""
-                android:layout_marginRight="19dp"
+                android:layout_marginEnd="19dp"
+                android:background="@drawable/mostrar"
                 android:checked="false"
-                android:background="@drawable/mostrar"/>
+                android:textOff=""
+                android:textOn="" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -251,88 +265,82 @@
                 android:id="@+id/tv_terminos_condiciones"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/circebold"
                 android:text="@string/tv_terminos_condiciones"
-                android:layout_marginLeft="5dp"
                 android:textAlignment="textStart"
                 android:textColor="@color/colorTextGray"
-                android:textSize="15sp"
-                android:fontFamily="@font/circebold"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/click_terminos_condiciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:fontFamily="@font/circeextrabold"
                 android:text="@string/btn_terminos_condiciones"
-                android:layout_marginLeft="1dp"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="@color/colorTextLightBlue"
-                android:textSize="15sp"
-                android:fontFamily="@font/circeextrabold"/>
-
-
+                android:textSize="15sp" />
 
         </LinearLayout>
 
-
-        <ProgressBar
-            android:id="@+id/pgbLogin"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
         <Button
-            android:id="@+id/btnLoggin"
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/ingresar_button" />
+            android:background="@drawable/background_button"
+            android:text="@string/button_create_account"
+            android:textColor="@color/bb_white" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="1dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_noAcount_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿Ya tiene una cuenta?"
-                android:layout_marginLeft="55dp"
+                android:layout_marginStart="55dp"
+                android:fontFamily="@font/circebold"
+                android:text="@string/hint_already_have_account"
                 android:textAlignment="textStart"
                 android:textColor="@color/colorTextGray"
-                android:textSize="15sp"
-                android:fontFamily="@font/circebold"/>
+                android:textSize="15sp" />
 
             <Button
-                android:id="@+id/btn_noAcount_question"
+                android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingresar"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:background="#00C2C2C2"
+                android:fontFamily="@font/circeextrabold"
+                android:text="@string/button_enter_account"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:background="#00C2C2C2"
                 android:textColor="@color/colorTextLightBlue"
-                android:textSize="17sp"
-                android:fontFamily="@font/circeextrabold"/>
+                android:textSize="17sp" />
 
         </LinearLayout>
 
-
-
-
-
     </LinearLayout>
 
-</RelativeLayout>
+    <ProgressBar
+        android:id="@+id/pgbRegister"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

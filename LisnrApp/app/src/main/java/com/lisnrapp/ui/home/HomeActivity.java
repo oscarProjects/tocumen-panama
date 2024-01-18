@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -56,6 +57,8 @@ public class HomeActivity extends AppCompatActivity {
             binding.drawerLayout.closeDrawers();
             return false;
         });
+
+        binding.linearLogOut.setOnClickListener(v -> Toast.makeText(getBaseContext(), "Salir", Toast.LENGTH_LONG).show());
     }
 
     @Override

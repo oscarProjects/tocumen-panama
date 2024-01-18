@@ -9,7 +9,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lisnrapp.databinding.ItemGenericBinding;
-import com.lisnrapp.model.CuponesModel;
+import com.lisnrapp.data.cupones.CuponesModel;
 
 import java.util.List;
 

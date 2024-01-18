@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_login">v1/login</string>
+    <string name="service_register">v1/register</string>
+</resources>
