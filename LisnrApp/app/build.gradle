@@ -74,7 +74,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-    implementation files('/Users/oscarvazquez/Documents/ProyectosAndroid/CostaRica/tocumen-panama/LisnrApp/app/aars/lisnr-radius-sdk-android-2.0.0.aar')
+    implementation files('/Users/jorgecalderon/Documents/GitHub/tocumen-panama/LisnrApp/app/aars/lisnr-radius-sdk-android-2.0.0.aar')
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
